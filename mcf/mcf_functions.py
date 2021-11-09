@@ -1,9 +1,3 @@
-"""Created on Fri Apr  3 11:05:15 2020.
-
-Contains the functions needed for the running all parts of the programme
-@author: MLechner
--*- coding: utf-8 -*-
-"""
 import copy
 import sys
 import time
@@ -458,11 +452,12 @@ def ModifiedCausalForest(
         else:
             gate = gate_se = None
         time9_gate = time.time()
-        (pred_outfile, _, _, iate, iate_se, names_pot_iate
-         ) = mcf_iate.iate_est_mp(
-            weights, preddata3, y_train, cl_train, w_train, v_dict, c_dict,
-            w_ate)
-        del _, w_ate
+        # COMMENTED OUT
+        #(pred_outfile, _, _, iate, iate_se, names_pot_iate
+        # ) = mcf_iate.iate_est_mp(
+        #    weights, preddata3, y_train, cl_train, w_train, v_dict, c_dict,
+        #    w_ate)
+        #del _, w_ate
         time9_iate = time.time()
 
         if c_dict['with_output'] and c_dict['balancing_test_w']:
@@ -471,10 +466,12 @@ def ModifiedCausalForest(
         del weights, y_train, x_bala_train, cl_train, w_train
         time9_bal = time.time()
 
-        if c_dict['with_output'] and c_dict['post_est_stats']:
-            mcf_iate.post_estimation_iate(
-                pred_outfile, names_pot_iate, ate, ate_se, effect_list, v_dict,
-                c_dict, var_x_type)
+
+        # COMMENTED OUT
+        #if c_dict['with_output'] and c_dict['post_est_stats']:
+        #    mcf_iate.post_estimation_iate(
+        #        pred_outfile, names_pot_iate, ate, ate_se, effect_list, v_dict,
+        #        c_dict, var_x_type)
         time10 = time.time()
     else:
         time7 = time.time()
@@ -553,7 +550,9 @@ def ModifiedCausalForest(
         else:
             outfiletext.close()
         sys.stdout = orig_stdout
-    return ate, ate_se, gate, gate_se, iate, iate_se, pred_outfile
+    # COMMENTED OUT
+    #return ate, ate_se, gate, gate_se, iate, iate_se, pred_outfile
+    return ate, ate_se, gate, gate_se
 
 
 def save_train_data_for_pred(data_file, v_dict, c_dict, prob_score,
